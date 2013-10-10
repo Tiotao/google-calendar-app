@@ -244,8 +244,8 @@ def search_events():
     # format start and end times
     start_dt = datetime.datetime.strptime(starttime, '%H:%M').time()
     end_dt = datetime.datetime.strptime(endtime, '%H:%M').time()
-    start_formatted = start_dt.strftime("%-I:%M%p")
-    end_formatted = end_dt.strftime("%-I:%M%p")
+    start_formatted = start_dt.strftime("%I:%M%p")
+    end_formatted = end_dt.strftime("%I:%M%p")
     # get list of free dates (datetime objects)
     free_dates = generate_date_list(startdate, enddate, starttime, endtime, calendarid)
     print free_dates
@@ -272,9 +272,9 @@ def schedule_event():
     apptEndTime = apptTime[2]
     apptTimeZone = apptTime[3]
     start_datetime = datetime.datetime.strptime(apptStartTime, '%H:%M%p').time()
-    start_formatted = start_datetime.strftime("%-I:%M%p")
+    start_formatted = start_datetime.strftime("%I:%M%p")
     end_datetime = datetime.datetime.strptime(apptEndTime, '%H:%M%p').time()
-    end_formatted = end_datetime.strftime("%-I:%M%p")
+    end_formatted = end_datetime.strftime("%I:%M%p")
     # data = {
     #     'text': apptName + " at " + apptLocation + " on " + apptDate + " " + start_formatted + "-" + end_formatted,
     #     'key': GOOGLE_API_KEY
@@ -360,8 +360,8 @@ def schedule_event():
     newApptEnd = resJSON.get('end').get('dateTime')
     newApptLoc = resJSON.get('location')
     # format datetimes
-    start_formatted = parser.parse(newApptStart).strftime("%m/%d/%Y at %-I:%M%p")
-    end_formatted = parser.parse(newApptEnd).strftime("%m/%d/%Y at %-I:%M%p")
+    start_formatted = parser.parse(newApptStart).strftime("%m/%d/%Y at %I:%M%p")
+    end_formatted = parser.parse(newApptEnd).strftime("%m/%d/%Y at %I:%M%p")
     print response
     return render_template("success.html", res=resJSON, apptName=newApptName, apptStart=start_formatted, apptEnd=end_formatted, apptLoc=newApptLoc)
 
